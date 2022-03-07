@@ -91,19 +91,19 @@ type-checking features.
 
 ```jsonc
 {
-	"compilerOptions": {
-		// ... leave the existing options unchanged and add following lines
+   "compilerOptions": {
+      // ... leave the existing options unchanged and add following lines
 
-		"strict": true,
-		"allowUnreachableCode": false,
-		"exactOptionalPropertyTypes": true,
-		"noImplicitAny": true,
-		"noImplicitOverride": true,
-		"noImplicitReturns": true,
-		"noImplicitThis": true,
-		"noFallthroughCasesInSwitch": true,
-		"noUncheckedIndexedAccess": true
-	}
+      "strict": true,
+      "allowUnreachableCode": false,
+      "exactOptionalPropertyTypes": true,
+      "noImplicitAny": true,
+      "noImplicitOverride": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noFallthroughCasesInSwitch": true,
+      "noUncheckedIndexedAccess": true
+   }
 }
 ```
 
@@ -214,11 +214,11 @@ To do that, you first need to define the desired alias in your `.tsconfig.json` 
 
 ```jsonc
 {
-	"compilerOptions": {
-		"paths": {
-			"$lib/*": ["src/lib/*"]
-		}
-	}
+   "compilerOptions": {
+      "paths": {
+         "$lib/*": ["src/lib/*"]
+      }
+   }
 }
 ```
 
@@ -229,15 +229,15 @@ import { resolve } from 'path'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	kit: {
-		vite: {
-			resolve: {
-				alias: {
-					$lib: resolve('./src/lib'),
-				},
-			},
-		},
-	},
+   kit: {
+      vite: {
+         resolve: {
+            alias: {
+               $lib: resolve('./src/lib'),
+            },
+         },
+      },
+   },
 }
 
 export default config
@@ -380,19 +380,19 @@ the function and get's exported from `@sveltejs/kit`.
 import type { ExternalFetch, GetSession, Handle, HandleError } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
-	/* implementation */
+   /* implementation */
 }
 
 export const getSession: GetSession = (event) => {
-	/* implementation */
+   /* implementation */
 }
 
 export const handleError: HandleError = async ({ error, event }) => {
-	/* implementation */
+   /* implementation */
 }
 
 export const externalFetch: ExternalFetch = async (request) => {
-	/* implementation */
+   /* implementation */
 }
 ```
 
@@ -434,13 +434,13 @@ type Params = { id: string }
 type OutputType = { product: Product }
 
 export const get: RequestHandler<Params, OutputType> = async ({ params }) => {
-	const data = await db.getProjectById(params.id)
+   const data = await db.getProjectById(params.id)
 
-	return {
-		body: {
-			product: data,
-		},
-	}
+   return {
+      body: {
+         product: data,
+      },
+   }
 }
 ```
 
@@ -488,14 +488,14 @@ _`src/routes/product/[id].svelte`_
 </script>
 
 <script lang="ts">
-	import type { Product } from '$models/product.model'
+   import type { Product } from '$models/product.model'
 
-	// by adding the `$$Props` interface we will get notified
-	// if the return type of out load function changes
-	interface $$Props extends OutputProps {}
+   // by adding the `$$Props` interface we will get notified
+   // if the return type of out load function changes
+   interface $$Props extends OutputProps {}
 
-	export let id: string
-	export let product: Product
+   export let id: string
+   export let product: Product
 </script>
 ```
 
@@ -523,9 +523,9 @@ wrong to model it like in the following example:
 
 ```ts
 interface ApiResponse<T> {
-	success: boolean
-	data: T | undefined
-	error: Error | undefined
+   success: boolean
+   data: T | undefined
+   error: Error | undefined
 }
 ```
 
@@ -536,9 +536,9 @@ But it doesn't work that well when you now want to access the data because its t
 let response: ApiResponse<string>
 
 if (response.success) {
-	// `response.data` is of type `string | undefined`
+   // `response.data` is of type `string | undefined`
 } else {
-	// `response.error` is of type `Error | undefined`
+   // `response.error` is of type `Error | undefined`
 }
 ```
 
@@ -549,16 +549,16 @@ We can improve the example by spitting our interface and then using an union typ
 ```ts
 // will contain data but no Error
 export interface SuccessResponse<T> {
-	success: true
-	data: T
-	error: undefined
+   success: true
+   data: T
+   error: undefined
 }
 
 // will contain an Error but no data
 export interface ErrorResponse {
-	success: false
-	data: undefined
-	error: Error
+   success: false
+   data: undefined
+   error: Error
 }
 
 // our union type
@@ -571,9 +571,9 @@ If we now access the `data` we will see tat it's type is no longer `undefined`:
 let response: ApiResponse<string>
 
 if (response.success) {
-	// `response.data` is of type `string`
+   // `response.data` is of type `string`
 } else {
-	// `response.error` is of type `Error`
+   // `response.error` is of type `Error`
 }
 ```
 
@@ -600,9 +600,9 @@ Create a `*.d.ts` file somewhere in your `src` folder and use the following synt
 import 'package' // `'package'` is the library we want to extend
 
 declare module 'package' {
-	// we re-declare the module
-	// we add the missing function or override the existing one defined by the original package
-	export declare function someFunction(): boolean
+   // we re-declare the module
+   // we add the missing function or override the existing one defined by the original package
+   export declare function someFunction(): boolean
 }
 ```
 
@@ -857,7 +857,7 @@ Also if you need to use generics inside your JSDoc comments, you may find the sy
  * @returns {void}
  */
 export const myFunction = (param) => {
-	// ... implementation
+   // ... implementation
 }
 ```
 
