@@ -1,6 +1,6 @@
 {
   "name": "sveltekit-typescript-showcase",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
@@ -11,11 +11,11 @@
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "next",
-    "@sveltejs/kit": "next",
-    "svelte": "^3.44.0",
-    "svelte-check": "^2.2.6",
-    "svelte-preprocess": "^4.10.1",
+    "@sveltejs/adapter-auto": "1.0.0-next.31",
+    "@sveltejs/kit": "1.0.0-next.294",
+    "svelte": "^3.46.4",
+    "svelte-check": "^2.4.5",
+    "svelte-preprocess": "^4.10.4",
     "tslib": "^2.3.1",
     "typescript": "~4.6.2"
   },
