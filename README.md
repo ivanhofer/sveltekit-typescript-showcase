@@ -92,8 +92,6 @@ type-checking features.
 ```jsonc
 {
    "compilerOptions": {
-      // ... leave the existing options unchanged and add following lines
-
       "strict": true,
       "allowUnreachableCode": false,
       "exactOptionalPropertyTypes": true,
@@ -446,7 +444,7 @@ export const get: RequestHandler<Params, OutputType> = async ({ params }) => {
 
 <!------------------------------------------------------------------------------------------------>
 
--  **[load function](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/routes/[id].svelte)**:
+-  **[load function](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/routes/products/[id].svelte)**:
    how to load data before the page get's rendered
 
 > https://kit.svelte.dev/docs/loading
@@ -513,7 +511,7 @@ strong typed functions within the code base.
 
 #### #1 union types
 
-> [Example](https://github.com/ivanhofer/svelteday-typescript/tree/main/src/01-props/03-control-flow/ImprovedComponent.svelte)
+> [Example](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/03-control-flow/ImprovedComponent.svelte)
 
 You can use union types to narrow down types in the control flow of your application. Somewhere you
 probably need to fetch data from an api. It will probably either return data or an error. It is not
