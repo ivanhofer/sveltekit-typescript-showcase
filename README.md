@@ -16,15 +16,15 @@ work together with [`TypeScript`](https://www.typescriptlang.org/).
 
 Hi, I'm Ivan, a passionate webdeveloper.
 
-I recently have been working more intensively with `Typescript` when I have created the
-internationalization library focusing on developer experience with the stongest typesafety features:
+I recently have been working more intensively with `TypeScript` when I created a
+internationalization library focusing on developer experience with strong typesafety features:
 [`typesafe-i18n`](https://github.com/ivanhofer/typesafe-i18n)
 
 I know and love `Svelte` for a few years now. Over the years I saw how my developent workflow
 improved and now together with `TypeScript` I'm able to build real business applications with
 confidence. When I started with `Svelte` the missing `TypeScript` support always bothered me. And
-once I could use `TypeScript` in my `Svelte` projects I still found it not so easy because of some
-missing documentation. That's why I decided to create this repository with some examples that should
+once I could use `TypeScript` in my `Svelte` projects I still found it not so easy because of the
+lack of documentation. That's why I decided to create this repository with some examples that should
 help you learn the concepts better. I hope you find it useful.
 
 <!------------------------------------------------------------------------------------------------>
@@ -48,7 +48,7 @@ In order to get the best development expeience you should use
 [`VS Code`](https://code.visualstudio.com/) as your IDE and install the
 [official `Svelte` extension](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
 The extension offers you a variety of features like code-completions, hover infos, syntax error
-highlighing and many more.
+highlighting and much more.
 
 > I also recommend to install the
 > [`Error Lens` extension](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
@@ -86,33 +86,33 @@ type-checking features.
 
 > As of writing these are the strictest options I know. This list will grow with new `TypeScript`
 > releases.\
-> Please [creating a PR](https://github.com/ivanhofer/sveltekit-typescript-showcase/pulls) if you know
+> Please [create a PR](https://github.com/ivanhofer/sveltekit-typescript-showcase/pulls) if you know
 > more options that should be enabled.
 
 ```jsonc
 {
-   "compilerOptions": {
-      "strict": true,
-      "allowUnreachableCode": false,
-      "exactOptionalPropertyTypes": true,
-      "noImplicitAny": true,
-      "noImplicitOverride": true,
-      "noImplicitReturns": true,
-      "noImplicitThis": true,
-      "noFallthroughCasesInSwitch": true,
-      "noUncheckedIndexedAccess": true
-   }
+	"compilerOptions": {
+		"strict": true,
+		"allowUnreachableCode": false,
+		"exactOptionalPropertyTypes": true,
+		"noImplicitAny": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true
+	}
 }
 ```
 
-> Not all option may fit your coding style. You can always remove some of them but be aware that
+> Not all options may fit your coding style. You can always remove some of them but be aware that
 > this could eliminate some cool type-checking features.
 
 <!------------------------------------------------------------------------------------------------>
 
 ### How does TypeScript work inside Svelte-Components?
 
-Per default the `Svelte`-compiler only understands plan `HTML`, `CSS` and `JavaScript`. But we can
+Per default the `Svelte`-compiler only understands plain `HTML`, `CSS` and `JavaScript`. But we can
 add support for other languages to the compiler via custom
 [`preprocessors`](https://svelte.dev/docs#compile-time-svelte-preprocess). Luckily we don't have to
 write our own preprocessor because there exists already an
@@ -177,18 +177,18 @@ if you are using a `TypeScript` version `>= 4.5.x` you can also write it like th
 You should know that even if you have `TypeScript` errors in your code, the `Svelte`-compiler will
 generate your component (if the code contains valid `TypeScript` syntax) and the browser will run
 the code normally. That's because the `preprocessor` only transpiles `TypeScript` to `JavaScript`
-and does't perform any type-checking. That's a reason why we should use the `Svelte` extension that
+and doesn't perform any type-checking. That's a reason why we should use the `Svelte` extension that
 will perform the type-checking for the components we have opened in `VS Code`. Performing a global
-type-check for all components each time you save a file may be to ressource intensive for most
+type-check for all components each time you save a file may be too resource intensive for most
 computers, so only errors for opened files will show up.
 
-This approach has a downside: If we change something in a component and haven't opened the the file
+This approach has a downside: If we change something in a component and haven't opened the file
 where we use that specific component, we won't get notified about errors. Again luckily for us there
 exists a solution to this problem: a package called
 [svelte-check](https://github.com/sveltejs/language-tools/tree/master/packages/svelte-check).
 
 If you take a look at the `scripts` section of the `package.json`, you will see that it is already
-configured for us. We simply can run this comand to perform a check of the whole project:
+configured for us. We simply can run the following command to perform a check of the whole project:
 
 ```sh
 npm run check
@@ -199,49 +199,47 @@ npm run check
 
 <!------------------------------------------------------------------------------------------------>
 
-#### path aliases
+### path aliases
 
 You may see imports from paths that are not npm modules and also not relative paths e.g.
-`$lib/Component.svelte`. These are called path aliases unnd you can define them yourself if you
+`$lib/Component.svelte`. These are called path aliases and you can define them yourself if you
 like.
 
 Let's say instead of using a relative file import like `../../../lib/Component.svelte` you want to
-use the alias import `$lib/Component.svelte`.
-
-To do that, you first need to define the desired alias in your `.tsconfig.json` file:
+use the alias import `$lib/Component.svelte`. To do that, you first need to define the desired alias in your `tsconfig.json` file:
 
 ```jsonc
 {
-   "compilerOptions": {
-      "paths": {
-         "$lib/*": ["src/lib/*"]
-      }
-   }
+	"compilerOptions": {
+		"paths": {
+			"$lib/*": ["src/lib/*"]
+		}
+	}
 }
 ```
 
-And then also tell `vite` inside your `svelte.config.js` that you want to use that path alias.
+And then also tell [`vite`](https://vitejs.dev/) inside your `svelte.config.js` that you want to use that path alias.
 
 ```ts
 import { resolve } from 'path'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-   kit: {
-      vite: {
-         resolve: {
-            alias: {
-               $lib: resolve('./src/lib'),
-            },
-         },
-      },
-   },
+	kit: {
+		vite: {
+			resolve: {
+				alias: {
+					$lib: resolve('./src/lib'),
+				},
+			},
+		},
+	},
 }
 
 export default config
 ```
 
-You can define as many aliases you like.
+You can define as many aliases as you like.
 
 <!------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------>
@@ -263,7 +261,7 @@ the examples inside VS Code to have proper syntax-highlighting in place.
 
 ### Svelte
 
-#### [props](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props)
+#### props
 
 > https://svelte.dev/docs#component-format-script-1-export-creates-a-component-prop
 
@@ -378,19 +376,19 @@ the function and get's exported from `@sveltejs/kit`.
 import type { ExternalFetch, GetSession, Handle, HandleError } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
-   /* implementation */
+	/* implementation */
 }
 
 export const getSession: GetSession = (event) => {
-   /* implementation */
+	/* implementation */
 }
 
 export const handleError: HandleError = async ({ error, event }) => {
-   /* implementation */
+	/* implementation */
 }
 
 export const externalFetch: ExternalFetch = async (request) => {
-   /* implementation */
+	/* implementation */
 }
 ```
 
@@ -432,13 +430,13 @@ type Params = { id: string }
 type OutputType = { product: Product }
 
 export const get: RequestHandler<Params, OutputType> = async ({ params }) => {
-   const data = await db.getProjectById(params.id)
+	const data = await db.getProjectById(params.id)
 
-   return {
-      body: {
-         product: data,
-      },
-   }
+	return {
+		body: {
+			product: data,
+		},
+	}
 }
 ```
 
@@ -521,9 +519,9 @@ wrong to model it like in the following example:
 
 ```ts
 interface ApiResponse<T> {
-   success: boolean
-   data: T | undefined
-   error: Error | undefined
+	success: boolean
+	data: T | undefined
+	error: Error | undefined
 }
 ```
 
@@ -534,9 +532,9 @@ But it doesn't work that well when you now want to access the data because its t
 let response: ApiResponse<string>
 
 if (response.success) {
-   // `response.data` is of type `string | undefined`
+	// `response.data` is of type `string | undefined`
 } else {
-   // `response.error` is of type `Error | undefined`
+	// `response.error` is of type `Error | undefined`
 }
 ```
 
@@ -547,16 +545,16 @@ We can improve the example by spitting our interface and then using an union typ
 ```ts
 // will contain data but no Error
 export interface SuccessResponse<T> {
-   success: true
-   data: T
-   error: undefined
+	success: true
+	data: T
+	error: undefined
 }
 
 // will contain an Error but no data
 export interface ErrorResponse {
-   success: false
-   data: undefined
-   error: Error
+	success: false
+	data: undefined
+	error: Error
 }
 
 // our union type
@@ -569,9 +567,9 @@ If we now access the `data` we will see tat it's type is no longer `undefined`:
 let response: ApiResponse<string>
 
 if (response.success) {
-   // `response.data` is of type `string`
+	// `response.data` is of type `string`
 } else {
-   // `response.error` is of type `Error`
+	// `response.error` is of type `Error`
 }
 ```
 
@@ -598,9 +596,9 @@ Create a `*.d.ts` file somewhere in your `src` folder and use the following synt
 import 'package' // `'package'` is the library we want to extend
 
 declare module 'package' {
-   // we re-declare the module
-   // we add the missing function or override the existing one defined by the original package
-   export declare function someFunction(): boolean
+	// we re-declare the module
+	// we add the missing function or override the existing one defined by the original package
+	export declare function someFunction(): boolean
 }
 ```
 
@@ -855,7 +853,7 @@ Also if you need to use generics inside your JSDoc comments, you may find the sy
  * @returns {void}
  */
 export const myFunction = (param) => {
-   // ... implementation
+	// ... implementation
 }
 ```
 
