@@ -3,6 +3,12 @@
 		minHeight: number
 	}
 
+	// import type { Action } from 'svelte/action'
+	// Note: the next Svelte release will export an `Action` interface that
+	// can be used to type actions. Until then, you need to trust the
+	// Svelte extension to tell you if the implementation is correct.
+	// Once released I will update this example.
+
 	// this action resizes a textarea when a newline get's inserted/deleted
 	const autosize = (node: HTMLTextAreaElement, options?: AutosizeOptions) => {
 		const minHeight = options?.minHeight || 0
