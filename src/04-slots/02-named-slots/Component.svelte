@@ -12,6 +12,6 @@
 <div class="wrapper">
 	<slot name="elapsed-time" value={elapsedTime}>
 		<!-- provide a default value -->
-		{elapsedTime}s
+		{elapsedTime} seconds
 	</slot>
 </div>

@@ -91,17 +91,17 @@ type-checking features.
 
 ```jsonc
 {
-	"compilerOptions": {
-		"strict": true,
-		"allowUnreachableCode": false,
-		"exactOptionalPropertyTypes": true,
-		"noImplicitAny": true,
-		"noImplicitOverride": true,
-		"noImplicitReturns": true,
-		"noImplicitThis": true,
-		"noFallthroughCasesInSwitch": true,
-		"noUncheckedIndexedAccess": true
-	}
+   "compilerOptions": {
+      "strict": true,
+      "allowUnreachableCode": false,
+      "exactOptionalPropertyTypes": true,
+      "noImplicitAny": true,
+      "noImplicitOverride": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noFallthroughCasesInSwitch": true,
+      "noUncheckedIndexedAccess": true
+   }
 }
 ```
 
@@ -210,11 +210,11 @@ in your `tsconfig.json` file:
 
 ```jsonc
 {
-	"compilerOptions": {
-		"paths": {
-			"$lib/*": ["src/lib/*"]
-		}
-	}
+   "compilerOptions": {
+      "paths": {
+         "$lib/*": ["src/lib/*"]
+      }
+   }
 }
 ```
 
@@ -226,15 +226,15 @@ import { resolve } from 'path'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	kit: {
-		vite: {
-			resolve: {
-				alias: {
-					$lib: resolve('./src/lib'),
-				},
-			},
-		},
-	},
+   kit: {
+      vite: {
+         resolve: {
+            alias: {
+               $lib: resolve('./src/lib'),
+            },
+         },
+      },
+   },
 }
 
 export default config
@@ -378,19 +378,19 @@ like the function and get exported from `@sveltejs/kit`.
 import type { ExternalFetch, GetSession, Handle, HandleError } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
-	/* implementation */
+   /* implementation */
 }
 
 export const getSession: GetSession = (event) => {
-	/* implementation */
+   /* implementation */
 }
 
 export const handleError: HandleError = async ({ error, event }) => {
-	/* implementation */
+   /* implementation */
 }
 
 export const externalFetch: ExternalFetch = async (request) => {
-	/* implementation */
+   /* implementation */
 }
 ```
 
@@ -433,13 +433,13 @@ type Params = { id: string }
 type OutputType = { product: Product }
 
 export const get: RequestHandler<Params, OutputType> = async ({ params }) => {
-	const data = await db.getProjectById(params.id)
+   const data = await db.getProjectById(params.id)
 
-	return {
-		body: {
-			product: data,
-		},
-	}
+   return {
+      body: {
+         product: data,
+      },
+   }
 }
 ```
 
@@ -522,9 +522,9 @@ error. It is not wrong to model it like in the following example:
 
 ```ts
 interface ApiResponse<T> {
-	success: boolean
-	data: T | undefined
-	error: Error | undefined
+   success: boolean
+   data: T | undefined
+   error: Error | undefined
 }
 ```
 
@@ -535,9 +535,9 @@ definition also contains `undefined`:
 let response: ApiResponse<string>
 
 if (response.success) {
-	// `response.data` is of type `string | undefined`
+   // `response.data` is of type `string | undefined`
 } else {
-	// `response.error` is of type `Error | undefined`
+   // `response.error` is of type `Error | undefined`
 }
 ```
 
@@ -548,16 +548,16 @@ We can improve the example by spitting our interface and then using an union typ
 ```ts
 // will contain data but no Error
 export interface SuccessResponse<T> {
-	success: true
-	data: T
-	error: undefined
+   success: true
+   data: T
+   error: undefined
 }
 
 // will contain an Error but no data
 export interface ErrorResponse {
-	success: false
-	data: undefined
-	error: Error
+   success: false
+   data: undefined
+   error: Error
 }
 
 // our union type
@@ -570,9 +570,9 @@ If we now access the `data` we will see that its type is no longer `undefined`:
 let response: ApiResponse<string>
 
 if (response.success) {
-	// `response.data` is of type `string`
+   // `response.data` is of type `string`
 } else {
-	// `response.error` is of type `Error`
+   // `response.error` is of type `Error`
 }
 ```
 
@@ -599,9 +599,9 @@ Create a `*.d.ts` file somewhere in your `src` folder and use the following synt
 import 'package' // `'package'` is the library we want to extend
 
 declare module 'package' {
-	// we re-declare the module
-	// we add the missing function or override the existing one
-	export declare function someFunction(): boolean
+   // we re-declare the module
+   // we add the missing function or override the existing one
+   export declare function someFunction(): boolean
 }
 ```
 
@@ -865,7 +865,7 @@ Also if you need to use generics inside your `JSDoc` comments, you may find the 
  * @returns {void}
  */
 export const myFunction = (param) => {
-	// ... implementation
+   // ... implementation
 }
 ```
 

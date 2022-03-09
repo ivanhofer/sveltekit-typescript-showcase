@@ -5,7 +5,7 @@
 	// you then can use this generic type inside the component to create another type
 	type ItemArray = Item[]
 
-	// when used on
+	// we can use the generic type for our props 
 	export let items: ItemArray
 	export let onDelete: (index: number, value: Item) => void
 

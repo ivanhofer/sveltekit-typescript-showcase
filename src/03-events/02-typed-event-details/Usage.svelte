@@ -11,5 +11,5 @@
 
 <Component on:loaded={handleLoaded} on:clicked={handleClicked} />
 
-<!-- we can also listen to not specified events because a sub-component may dispatch it, but it wil be typed as `any` -->
+<!-- we can also listen to not specified events because a sub-component may dispatch it, but it will be typed as `any` -->
 <Component on:change={({ detail }) => console.log(detail)} />
