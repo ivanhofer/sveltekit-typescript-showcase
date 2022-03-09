@@ -13,7 +13,7 @@ export type ProductId = string & { readonly [_productId]: never }
 // ----------------------------------------------------------------------------
 // Example
 // ----------------------------------------------------------------------------
-// Note: '@ts-expect-error' are special comments that tells TypeScript that we 
+// Note: '@ts-expect-error' are special comments which tell TypeScript that we
 // expect the following line to contain an Error. If the following line would
 // not contain an Error, TypeScript will show us an Error
 

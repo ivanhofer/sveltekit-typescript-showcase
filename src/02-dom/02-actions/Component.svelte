@@ -9,7 +9,7 @@
 	// Svelte extension to tell you if the implementation is correct.
 	// Once released I will update this example.
 
-	// this action resizes a textarea when a newline get's inserted/deleted
+	// this action resizes a textarea when a newline gets inserted/deleted
 	const autosize = (node: HTMLTextAreaElement, options?: AutosizeOptions) => {
 		const minHeight = options?.minHeight || 0
 
@@ -19,14 +19,14 @@
 			node.style.height = Math.max(height, minHeight) + 'px'
 		}
 
-		// trigger resizing when component get's mounted
+		// trigger resizing when component gets mounted
 		setTimeout(expand, 0)
 
 		// check size on each input change
 		node.addEventListener('input', expand, false)
 
 		return {
-			// remove event listener when component get's destroyed
+			// remove event listener when component gets destroyed
 			destroy: () => node.removeEventListener('input', expand, false),
 		}
 	}

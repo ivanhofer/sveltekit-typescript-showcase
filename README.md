@@ -16,15 +16,15 @@ work together with [`TypeScript`](https://www.typescriptlang.org/).
 
 Hi, I'm Ivan, a passionate webdeveloper.
 
-I recently have been working more intensively with `TypeScript` when I created a
+I recently have been working more intensively with `TypeScript` when I have created an
 internationalization library focusing on developer experience with strong typesafety features:
 [`typesafe-i18n`](https://github.com/ivanhofer/typesafe-i18n)
 
-I know and love `Svelte` for a few years now. Over the years I saw how my developent workflow
-improved and now together with `TypeScript` I'm able to build real business applications with
-confidence. When I started with `Svelte` the missing `TypeScript` support always bothered me. And
-once I could use `TypeScript` in my `Svelte` projects I still found it not so easy because of the
-lack of documentation. That's why I decided to create this repository with some examples that should
+I know and love `Svelte` for a few years now. Over the years I saw how my development workflow
+improved and now together with `TypeScript`, I'm able to build real business applications with
+confidence. When I started with `Svelte`, the missing `TypeScript` support always bothered me. And
+once I could use `TypeScript` in my `Svelte` projects I still found it not so easy because of some
+missing documentation. That's why I decided to create this repository with some examples that should
 help you learn the concepts better. I hope you find it useful.
 
 <!------------------------------------------------------------------------------------------------>
@@ -114,7 +114,7 @@ type-checking features.
 
 Per default the `Svelte`-compiler only understands plain `HTML`, `CSS` and `JavaScript`. But we can
 add support for other languages to the compiler via custom
-[`preprocessors`](https://svelte.dev/docs#compile-time-svelte-preprocess). Luckily we don't have to
+[`preprocessors`](https://svelte.dev/docs#compile-time-svelte-preprocess). Luckily, we don't have to
 write our own preprocessor because there exists already an
 [official package](https://github.com/sveltejs/svelte-preprocess) we can use. `svelte-preprocess`
 enables us to use `TypeScript` and also custom CSS syntax like `SCSS` or `PostCSS` without much
@@ -133,7 +133,7 @@ Hello {name}!
 ```
 
 If everything is correctly set up, you should see an error message telling you something like
-`'Unexpected Token'`. Thats because we have to tell the preprocessor that we want to use
+`'Unexpected Token'`. That's because we have to tell the preprocessor that we want to use
 `TypeScript` syntax. We can do that by adding the `lang="ts"` attribute to our `script` tag.
 
 ```diff
@@ -151,8 +151,8 @@ That's it. You are now ready to write `TypeScript` code inside your `Svelte`-com
 
 #### imports from `.ts` files
 
-You can also import functions from other `TypeScript` files like you would in a normal `.ts` file. If
-you import types from another file, make sure you use the
+You can also import functions from other `TypeScript` files like you would in a normal `.ts` file.
+If you import types from another file, make sure you use the
 [`import type`-syntax](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#type-only-imports-and-export)
 
 ```svelte
@@ -194,7 +194,7 @@ configured for us. We simply can run the following command to perform a check of
 npm run check
 ```
 
-> You should include this `svelte-check` script in your `CI/CD` process to get notiified if your
+> You should include this `svelte-check` script in your `CI/CD` process to get notified if your
 > components contain `TypeScript` errors.
 
 <!------------------------------------------------------------------------------------------------>
@@ -240,7 +240,7 @@ const config = {
 export default config
 ```
 
-You can define as many aliases as you like.
+You can define as many aliases as you want.
 
 <!------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------>
@@ -341,8 +341,8 @@ This chapter shows how you can define events that a component emits.
    `SvelteKit` includes an easy way to export single components or component libraries. Just run
    `npm run package` and `SvelteKit` will export all your components from the `src/lib` directory,
    together with `TypeScript` definitions into the `package` folder. This folder then also contains
-   a generated `package.json` file. You then only need to run `npm publish` inside this folder to
-   upload the library to `npm`.
+   a generated `package.json` file. After that, you only need to run `npm publish` inside this
+   folder to upload the library to `npm`.
 
 <!------------------------------------------------------------------------------------------------>
 
@@ -401,13 +401,14 @@ type of these objects look like, you need to go into the `src/app.d.ts` file and
 existing `interfaces` there.
 
 Since these types will be shared accross multiple files and functions, it makes sense to define them
-just a single time. `SvelteKit` is configured in a way that it automatically uses those types for all
-functions.
+just a single time. `SvelteKit` is configured in a way that it automatically uses those types for
+all functions.
 
 <!------------------------------------------------------------------------------------------------>
 
 -  **[endpoints](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/routes/products/[id].ts)**:
-   how to use `SvelteKit` as an API-endpoint **[(TS-tipp #4)](#4-use-opaque-types-for-unique-types)**
+   how to use `SvelteKit` as an API-endpoint
+   **[(TS-tipp #4)](#4-use-opaque-types-for-unique-types)**
 
 > https://kit.svelte.dev/docs/routing#endpoints
 
@@ -445,7 +446,7 @@ export const get: RequestHandler<Params, OutputType> = async ({ params }) => {
 <!------------------------------------------------------------------------------------------------>
 
 -  **[load function](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/routes/products/[id].svelte)**:
-   how to load data before the page get's rendered
+   how to load data before the page gets rendered
 
 > https://kit.svelte.dev/docs/loading
 
@@ -563,7 +564,7 @@ export interface ErrorResponse {
 export type ApiResponse<T> = SuccessResponse<T> | ErrorResponse
 ```
 
-If we now access the `data` we will see that it's type is no longer `undefined`:
+If we now access the `data` we will see that its type is no longer `undefined`:
 
 ```ts
 let response: ApiResponse<string>
@@ -585,7 +586,7 @@ splitting the model into two different interfaces and then use an union type to.
 
 #### #2 extend existing type definitions
 
-> [Example](https://github.com/ivanhofer/svelteday-typescript/tree/main/src/createEventDispatcher.d.ts)\
+> [Example](https://github.com/ivanhofer/sveltekit-typescript-showcase/blob/main/src/createEventDispatcher.d.ts)\
 > a more complex example you don't need to fully understand. But this example can show you what is possible
 > with `TypeScript` if you know how to use it ;)
 
@@ -617,7 +618,7 @@ const result = someFunction()
 
 #### #3 wrap functions that have no strong typings
 
-> [Example](https://github.com/ivanhofer/svelteday-typescript/tree/main/src/06-state-management/03-context-outsourced/slider-context.ts)
+> [Example](https://github.com/ivanhofer/sveltekit-typescript-showcase/blob/main/src/06-state-management/03-context-outsourced/slider-context.ts)
 
 Whenever you are using a function that has no or not so good `TypeScript` definitions or whenever
 you need to cast something everytime you use a function, you should wrap it into a new function and
@@ -641,7 +642,7 @@ const c3 = getContext<string>('my comtext')
 The usage of `getContext` in the example above has three issues:
 
 1. you need to specify the return type whenever you call the function, so you would need to check
-   where the context get's set and copy the type definition from there
+   where the context gets set and copy the type definition from there
 2. when you refactor the context to hold different data, you need to update the type definition
    everywhere
 3. you could easily introduce a typo because the parameter of the function is typed as a generic
@@ -659,24 +660,23 @@ const getMyContext = () => getContext<string>('my context')
 const c = getMyContext() // typed as `string`
 ```
 
-We now have a single function that is reponsible for the **type (1)** and the **context name (3)**.
+We now have a single function that is responsible for the **type (1)** and the **context name (3)**.
 And we use that function when we want to access the data. When **refactoring (2)** we only need to
-change it in a single place (and let `TypeScript` tell you if it's now get used somewhere in a wrong
-way).
+change it in a single place (and let `TypeScript` tell you if it's now getting used in a wrong way).
 
 <!------------------------------------------------------------------------------------------------>
 
 #### #4 use `opaque-types` for unique types
 
-> [Example](https://github.com/ivanhofer/svelteday-typescript/tree/main/src/models/product.model.ts)
+> [Example](https://github.com/ivanhofer/sveltekit-typescript-showcase/blob/main/src/models/product.model.ts)
 
-Some types may look like another type but they don't have to do with each other. If you are working
-with databases the `ID` filed would be such a case.
+Some types may look similar to another type but they are not actually related. If you are working
+with databases the `ID` field would be such a case.
 
 ##### example
 
-Typing ids of your DB model as a `string` is probably not wrong because from a technical perspective
-they are `strings`. But it is also a `string` for other models of your DB.
+Typing the id of your DB model as a `string` is probably not wrong because from a technical
+perspective they are `strings`. But it is also a `string` for other models of your DB.
 
 ```ts
 interface Product {
@@ -706,7 +706,7 @@ and then use the `findById` function. At first glance it looks good, but it is a
 
 ##### improved example
 
-We can improve this by giving each model it's unique ID type.
+We can improve this by giving each model its unique ID type.
 
 ```ts
 // in the next two lines we define an `opaque type` for our ProductId
@@ -737,7 +737,7 @@ interface Category {
 }
 
 // in this case we need to cast it, because we are hardcoding the IDs
-// in a real world scenarion the data get's loaded on runtime
+// in a real world scenario the data gets loaded on runtime
 // from the DB and no casting is needed there
 const book: Product = { id: '1' as ProductId, /* ...rest */ }
 const category: Category = { id: '1' as CategoryId, /* ...rest */ }
@@ -764,10 +764,10 @@ Such examples could be:
 #### #5 use `tagged template literals` to narrow down your string types
 
 Like you already have seen in the example from [TS-tipp #4](#4-use-opaque-types-for-unique-types),
-`strings` are generic and can hold any kind of data. Luckily `TypeScript` is flexible enough to
+strings are really generic and can hold any kind of data. Luckily `TypeScript` is flexible enough to
 let us define whick shape we expect the data.
 
-> [Example](https://github.com/ivanhofer/svelteday-typescript/tree/main/src/models/tagged-template-literals.model.ts)
+> [Example](https://github.com/ivanhofer/sveltekit-typescript-showcase/blob/main/src/models/tagged-template-literals.model.ts)
 
 ```ts
 // a list of possible options (`enum`-like)
@@ -795,7 +795,8 @@ type Api2Timestamp = `${number}` // e.g. '1635494400000'
 // ... and many more potential use-cases
 ```
 
-If we assign a value that won't match this shape `TypeScript` will throw an error.
+If we assign a value that doesn't match the definition of the shape `TypeScript` will throw an
+error.
 
 <!------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------>
@@ -813,9 +814,9 @@ introduce complexity you need to maintain over the lifetime of a project.
 
 ## JSDoc comments
 
-You probably don't need `TypeScript` directly to profit from a strong type-checking experience inside
-your `Svelte` and `SvelteKit` applications. `VS Code` and the `Svelte` extension can also offer help
-if you annotate your components with [`JSDoc` comments](https://jsdoc.app/).
+You probably don't need `TypeScript` directly to profit from a strong type-checking experience
+inside your `Svelte` and `SvelteKit` applications. `VS Code` and the `Svelte` extension can also
+offer help if you annotate your components with [`JSDoc` comments](https://jsdoc.app/).
 
 Here is a simple example:
 
@@ -846,7 +847,8 @@ It is up to you which syntax you prefer. Some parts of the `SvelteKit` codebase 
 I would suggest directly using ´TypeScript´ because if you need more complex types, you will need to
 write
 [`declaration files`](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html)
-in `TypeScript` syntax. It will be harder for you to write them if you are not used to the `TypeScript` syntax.
+in `TypeScript` syntax. It will be harder for you to write them if you are not used to the
+`TypeScript` syntax.
 
 Also if you need to use generics inside your `JSDoc` comments, you may find the syntax a bit messy:
 

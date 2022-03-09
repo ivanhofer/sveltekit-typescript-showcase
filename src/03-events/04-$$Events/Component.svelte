@@ -6,7 +6,7 @@
 	type $$Events = Component['$$events_def']
 
 	// can also be specified as `interface`
-	// note: we need so save it to a new type first or else get an TS-2499 Error
+	// note: we need to save it to a new type first or else get an TS-2499 Error
 	// type TypedEventsEventsType = TypedEvents['$$events_def']
 	// interface $$Events extends TypedEventsEventsType {}
 </script>

@@ -3,11 +3,11 @@ import { writable } from 'svelte/store'
 // the store will automatically infer the type from the initial value
 export const myStore = writable(12)
 
-// if we want the store to hold multiple type of values
+// if we want the store to hold multiple types of values
 // we need to specify the type as generic
 export const myOtherStore = writable<undefined | string>(undefined)
 
-// we create a cutom store with some additional function
+// we create a custom store with some additional function
 const createMyCustomStore = <T>(fetchFn: () => Promise<T>) => {
 	const { subscribe, set } = writable<T | undefined>(undefined)
 

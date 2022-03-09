@@ -2,7 +2,7 @@
 	import Component from './Component.svelte'
 </script>
 
-<!-- We don't specify the `elapsed-time` slot so the component will show it's fallback value -->
+<!-- We don't specify the `elapsed-time` slot so the component will show its fallback value -->
 <Component />
 
 <hr />

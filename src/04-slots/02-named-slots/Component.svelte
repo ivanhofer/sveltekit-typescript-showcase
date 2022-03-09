@@ -4,8 +4,8 @@
 	let elapsedTime = 0
 	const interval = setInterval(() => (elapsedTime += 1), 1_000)
 
-	// we need to clear the interval when the component get's destroyed
-	// to not get memory leaks
+	// we need to clear the interval when the component gets destroyed
+	// to avoid memory leaks
 	onDestroy(() => clearInterval(interval))
 </script>
 

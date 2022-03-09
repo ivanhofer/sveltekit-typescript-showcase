@@ -6,8 +6,7 @@
 		default: never
 		// the named slot exposes no variables (use an empty object)
 		named: {}
-		// we have to use the `$$Slot` interface if we have the same slot
-		// definition in the markup that expose different props
+		// we have to use the `$$Slots` interface if we have two slots with the same name exposing differently typed props
 		'conditional-slot': { valid?: string; invalid?: string }
 	}
 

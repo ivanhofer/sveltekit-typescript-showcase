@@ -1,4 +1,4 @@
-// Currently `createEventDispatcher` is not 100% typesafe. Until it get's merged, you can use the following code snippet to improve the type definition.
+// Currently `createEventDispatcher` is not 100% typesafe. Until it gets merged, you can use the following code snippet to improve the type definition.
 // There is an open PR that improves the type definitions: https://github.com/sveltejs/svelte/pull/7224
 
 import 'svelte'

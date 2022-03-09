@@ -1,7 +1,7 @@
 /// <reference types="svelte" />
 
-// let's assume the package 'some-component-with-no-types' does't export
-// type definitions. In tihs case we need to write our own definitions
+// let's assume the package 'some-component-with-no-types' doesn't export
+// type definitions. In this case we need to write our own definitions
 // to benefit from strong type-checking
 
 declare module 'some-component-with-no-types' {
