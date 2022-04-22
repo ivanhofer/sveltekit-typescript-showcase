@@ -284,6 +284,8 @@ props.
    how to extend the defined props of your components
 -  **[call exported function](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/07-call-exported-function)**:
    how to call an exported function from the parent
+-  **[either or](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/08-either-or)**:
+   expect either param A or param B
 
 <!------------------------------------------------------------------------------------------------>
 
