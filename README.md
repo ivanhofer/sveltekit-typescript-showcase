@@ -282,6 +282,8 @@ props.
    how to use generics for props
 -  **[\$$Props](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/06-$$Props)**:
    how to extend the defined props of your components
+-  **[call exported function](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/06-call-exported-function)**:
+   how to call an exported function from the parent
 
 <!------------------------------------------------------------------------------------------------>
 
