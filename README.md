@@ -275,7 +275,7 @@ props.
    how to mark props as optional
 -  **[control flow](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/03-control-flow)**:
    how does it work inside the html markup **[(TS-tipp #1)](#1-union-types)**
--  **[reacive assignments](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/04-reactive-assignments)**:
+-  **[reactive assignments](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/04-reactive-assignments)**:
    how to type reactive statements
    > https://svelte.dev/docs#component-format-script-3-$-marks-a-statement-as-reactive
 -  **[generic props](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/05-generic-props)**:
