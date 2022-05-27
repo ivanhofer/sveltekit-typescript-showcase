@@ -357,7 +357,7 @@ This chapter shows how you can define events that a component emits.
 -  **[stores](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/06-state-management/01-stores)**:
    how to type your stores
    > https://svelte.dev/docs#run-time-svelte-store
--  **context]**
+-  **context**
    -  **[inline](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/06-state-management/02-context-inline)**:
       how to type contexts
       > https://svelte.dev/docs#run-time-svelte-setcontext
