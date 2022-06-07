@@ -1,6 +1,9 @@
 {
 	"name": "sveltekit-typescript-showcase",
 	"version": "1.0.0",
+	"description": "This repository shows how Svelte and SvelteKit work together with TypeScript.",
+	"author": "ivanhofer",
+	"license": "MIT",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -19,5 +22,9 @@
 		"tslib": "^2.3.1",
 		"typescript": "~4.6.3"
 	},
-	"type": "module"
+	"type": "module",
+	"funding": {
+		"type": "github",
+		"url": "https://github.com/sponsors/ivanhofer"
+	}
 }
