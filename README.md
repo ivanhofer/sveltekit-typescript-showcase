@@ -27,6 +27,8 @@ once I could use `TypeScript` in my `Svelte` projects I still found it not so ea
 missing documentation. That's why I decided to create this repository with some examples that should
 help you learn the concepts better. I hope you find it useful.
 
+[Become a sponsor :heart:](https://github.com/sponsors/ivanhofer) if you want to support my open source contributions.
+
 <!------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------>
 
