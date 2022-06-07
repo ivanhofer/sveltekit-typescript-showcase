@@ -7,13 +7,11 @@
 	export interface SuccessResponse<T> {
 		success: true
 		data: T
-		error: undefined
 	}
 
 	// will contain an Error but no data
 	export interface ErrorResponse {
 		success: false
-		data: undefined
 		error: Error
 	}
 </script>

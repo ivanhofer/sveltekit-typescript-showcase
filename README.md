@@ -287,7 +287,7 @@ props.
 -  **[either or](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/08-either-or)**:
    expect either param A or param B
 -  **[svelte:component](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/09-svelte-component)**:
-   getting prop-types of a svelte component (useful for `svelte:component`)
+   getting prop-types of a component (useful for `svelte:component`)
 
 <!------------------------------------------------------------------------------------------------>
 

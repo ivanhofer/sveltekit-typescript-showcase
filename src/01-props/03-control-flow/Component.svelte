@@ -1,8 +1,8 @@
 <script lang="ts" context="module">
 	export interface ApiResponse1<T> {
 		success: boolean
-		data: T | undefined
-		error: Error | undefined
+		data?: T
+		error?: Error
 	}
 </script>
 
