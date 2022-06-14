@@ -1,13 +1,15 @@
 <script lang="ts" context="module">
-	import type { Load } from '@sveltejs/kit'
-
+	import type { Load } from './__types/[id]'
 	import type { get } from './[id]'
-	type Params = { id: ProductId }
 	// you can either define it manually or copy this line to let TypeScript infer the type for you
 	type InputProps = NonNullable<Awaited<ReturnType<typeof get>>['body']>
-	type OutputProps = Params & InputProps
+	type OutputProps = InputProps & { id: string }
 
-	export const load: Load<Params, InputProps, OutputProps> = async ({
+
+	// we have imported the `Load` type from the relative `__types` folder that
+	// is hidden in the generated `.svelte-kit` folder. Those generated types
+	// contain a `Load` type with a `params` object that matches our route.
+	export const load: Load<InputProps, OutputProps> = async ({
 		params,
 		props,
 		session,
@@ -27,13 +29,13 @@
 </script>
 
 <script lang="ts">
-	import type { Product, ProductId } from '$models/product.model'
+	import type { Product } from '$models/product.model'
 
 	// by adding the `$$Props` interface we will get notified
 	// if the return type of out load function changes
 	interface $$Props extends OutputProps {}
 
-	export let id: ProductId
+	export let id: string
 	export let product: Product
 </script>
 

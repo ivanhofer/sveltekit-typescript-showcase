@@ -1,12 +1,12 @@
-import type { RequestHandler } from '@sveltejs/kit'
-import type { Product, ProductId } from '$models/product.model'
-
-// take a look what hides behind `ProductId` ;)
-type Params = { id: ProductId }
+import type { RequestHandler } from './__types/[id]'
+import type { Product } from '$models/product.model'
 
 type OutputType = { product: Product }
 
-export const get: RequestHandler<Params, OutputType> = async ({ params }) => {
+// we have imported the `RequestHandler` type from the relative `__types` folder that
+// is hidden in the generated `.svelte-kit` folder. Those generated types
+// contain a `RequestHandler` type with a `params` object that matches our route.
+export const get: RequestHandler<OutputType> = async ({ params }) => {
 	// usually here you would fetch the data from a DB
 	const product: Product = {
 		name: `${params.id} product`,

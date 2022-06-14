@@ -416,7 +416,6 @@ all functions.
 
 -  **[endpoints](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/routes/products/[id].ts)**:
    how to use `SvelteKit` as an API-endpoint
-   **[(TS-tipp #4)](#4-use-opaque-types-for-unique-types)**
 
 > https://kit.svelte.dev/docs/routing#endpoints
 
@@ -773,7 +772,7 @@ Such examples could be:
 
 Like you already have seen in the example from [TS-tipp #4](#4-use-opaque-types-for-unique-types),
 strings are really generic and can hold any kind of data. Luckily `TypeScript` is flexible enough to
-let us define whick shape we expect the data.
+let us define which shape we expect the data.
 
 > [Example](https://github.com/ivanhofer/sveltekit-typescript-showcase/blob/main/src/models/tagged-template-literals.model.ts)
 
