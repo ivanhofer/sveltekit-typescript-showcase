@@ -6,6 +6,7 @@ type OutputType = { product: Product }
 // we have imported the `RequestHandler` type from the relative `__types` folder that
 // is hidden in the generated `.svelte-kit` folder. Those generated types
 // contain a `RequestHandler` type with a `params` object that matches our route.
+// You need to run the dev server or `svelte-kit sync` to generate them.
 export const get: RequestHandler<OutputType> = async ({ params }) => {
 	// usually here you would fetch the data from a DB
 	const product: Product = {

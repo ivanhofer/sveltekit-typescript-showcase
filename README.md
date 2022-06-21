@@ -377,133 +377,132 @@ In this chapter you get to know how to type the backend of your `SvelteKit` appl
 -  **[hooks](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/hooks.ts)**:
    how to intercept and modify requests
 
-> https://kit.svelte.dev/docs/hooks
+   > https://kit.svelte.dev/docs/hooks
 
-The `src/hooks.ts` file can export four functions. The type of these functions have the same name
-like the function and get exported from `@sveltejs/kit`.
+   The `src/hooks.ts` file can export four functions. The type of these functions have the same name
+   like the function and get exported from `@sveltejs/kit`.
 
-```ts
-import type { ExternalFetch, GetSession, Handle, HandleError } from '@sveltejs/kit'
+   ```ts
+   import type { ExternalFetch, GetSession, Handle, HandleError } from '@sveltejs/kit'
 
-export const handle: Handle = async ({ event, resolve }) => {
-   /* implementation */
-}
+   export const handle: Handle = async ({ event, resolve }) => {
+      /* implementation */
+   }
 
-export const getSession: GetSession = (event) => {
-   /* implementation */
-}
+   export const getSession: GetSession = (event) => {
+      /* implementation */
+   }
 
-export const handleError: HandleError = async ({ error, event }) => {
-   /* implementation */
-}
+   export const handleError: HandleError = async ({ error, event }) => {
+      /* implementation */
+   }
 
-export const externalFetch: ExternalFetch = async (request) => {
-   /* implementation */
-}
-```
+   export const externalFetch: ExternalFetch = async (request) => {
+      /* implementation */
+   }
+   ```
 
-The `handle` and `getSession` function will have access to the
-[`locals`](https://kit.svelte.dev/docs/hooks#handle) and the
-[`session`](https://kit.svelte.dev/docs/hooks#getsession) object. To let `TypeScript` know how the
-type of these objects look like, you need to go into the `src/app.d.ts` file and update the already
-existing `interfaces` there.
+   The `handle` and `getSession` function will have access to the
+   [`locals`](https://kit.svelte.dev/docs/hooks#handle) and the
+   [`session`](https://kit.svelte.dev/docs/hooks#getsession) object. To let `TypeScript` know how the
+   type of these objects look like, you need to go into the `src/app.d.ts` file and update the already
+   existing `interfaces` there.
 
-Since these types will be shared accross multiple files and functions, it makes sense to define them
-just a single time. `SvelteKit` is configured in a way that it automatically uses those types for
-all functions.
+   Since these types will be shared accross multiple files and functions, it makes sense to define them
+   just a single time. `SvelteKit` is configured in a way that it automatically uses those types for
+   all functions.
 
 <!------------------------------------------------------------------------------------------------>
 
 -  **[endpoints](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/routes/products/[id].ts)**:
    how to use `SvelteKit` as an API-endpoint
 
-> https://kit.svelte.dev/docs/routing#endpoints
+   > https://kit.svelte.dev/docs/routing#endpoints
 
-> Note: there may exist a better approach to type endpoints in the future. Recently a
-> [`new feature`](https://kit.svelte.dev/docs/types#generated-types) was added that will help to
-> type the `Load` and `RequestHandler` functions. In my opinion it is not quite ready for production
-> yet. I will update this reference once it is more robust.
+   We can use `RequestHandler` to type our endpoints. It expects a single generics:
 
-We can use `RequestHandler` to type our endpoints. It expects two generics:
+   1. The type describes the shape the returned value will have.
 
-1. The `Params` the route contains.
-2. The second type describes the shape the returned value will have.
+   _`src/routes/product/[id].ts`_
 
-_`src/routes/product/[id].ts`_
+   ```ts
+   import type { RequestHandler } from './__types/[id]'
+   import type { Product } from '$models/product.model'
+   import db from '$db'
 
-```ts
-import type { RequestHandler } from '@sveltejs/kit'
-import type { Product } from '$models/product.model'
-import db from '$db'
+   type OutputType = { product: Product }
 
-type Params = { id: string }
-type OutputType = { product: Product }
+   export const get: RequestHandler<OutputType> = async ({ params }) => {
+      const data = await db.getProjectById(params.id)
 
-export const get: RequestHandler<Params, OutputType> = async ({ params }) => {
-   const data = await db.getProjectById(params.id)
-
-   return {
-      body: {
-         product: data,
-      },
+      return {
+         body: {
+            product: data,
+         },
+      }
    }
-}
-```
+   ```
+
+   > Note: SvelteKit auto-generates the `__types` folder for us. We can use it to get a `RequestHandler` type that already has the correct shape for the `params` object.
 
 <!------------------------------------------------------------------------------------------------>
 
 -  **[load function](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/routes/products/[id].svelte)**:
    how to load data before the page gets rendered
 
-> https://kit.svelte.dev/docs/loading
+   > https://kit.svelte.dev/docs/loading
 
-Use the `Load` inferface type load functions in your route. It expects three generics:
+   Use the `Load` inferface type load functions in your route. It expects two generics:
 
-1. The `Params` the route contains.
-2. The second type will be the output type of your `endpoint` if available.\
-   If no `get`-endpoint is defined, the `props` object will be `undefined`.
-3. The third type describes the shape the returned value will have.
+   1. The first type will be the output type of your `endpoint` if available.\
+      If no `get`-endpoint is defined, the `props` object will be `undefined`.
+   2. The second type describes the shape the returned value will have.
 
-_`src/routes/product/[id].svelte`_
+   _`src/routes/product/[id].svelte`_
 
-```svelte
-<script lang="ts" context="module">
-   import type { Load } from '@sveltejs/kit'
-   import type { get } from './[id]'
+   ```svelte
+   <script lang="ts" context="module">
+      import type { Load } from './__types/[id]'
+      import type { get } from './[id]'
 
-   type Params = { id: string }
+      // you can either define it manually or copy this line to let TypeScript infer the type for you
+      type InputProps = NonNullable<Awaited<ReturnType<typeof get>>['body']>
 
-   // you can either define it manually or copy this line to let TypeScript infer the type for you
-   type InputProps = NonNullable<Awaited<ReturnType<typeof get>>['body']>
+      type OutputProps = InputProps & { id: string }
+      // the same as
+      // type OutputProps = {
+      //    id: string
+      //    product: Product
+      // }
 
-   type OutputProps = Params & InputProps
-   // the same as
-   // type OutputProps = {
-   //    id: string
-   //    product: Product
-   // }
-
-   export const load: Load<Params, InputProps, OutputProps> = async ({ params, props }) => {
-      return {
-         props: {
-            id: params.id,
-            product: props.product,
-         },
+      export const load: Load<InputProps, OutputProps> = async ({ params, props }) => {
+         return {
+            props: {
+               id: params.id,
+               product: props.product,
+            },
+         }
       }
-   }
-</script>
+   </script>
 
-<script lang="ts">
-   import type { Product } from '$models/product.model'
+   <script lang="ts">
+      import type { Product } from '$models/product.model'
 
-   // by adding the `$$Props` interface we will get notified
-   // if the return type of out load function changes
-   interface $$Props extends OutputProps {}
+      // by adding the `$$Props` interface we will get notified
+      // if the return type of out load function changes
+      interface $$Props extends OutputProps {}
 
-   export let id: string
-   export let product: Product
-</script>
-```
+      export let id: string
+      export let product: Product
+   </script>
+   ```
+
+   > Note: SvelteKit auto-generates the `__types` folder for us. We can use it to get a `Load` type that already has the correct shape for the `params` object.
+
+
+-  **[auto generated types](https://kit.svelte.dev/docs/types#generated-types)**\
+   SvelteKit creates some types automatically. Useful when you want to type your Endpoints and Load functions. Those types contain a typed `params` object depending on the route folder structure you use. The types are generated inside the `__types` folder. You can use a relative file import to use them (`./__types/{NAME_OF_FILE}`).\
+   The types are generated when you run the dev server `npm run dev`. If you just want to generate the types, without running the dev server you can run `svelte-kit sync`. When you run `npm install`, the types will be generated automatically because the SvelteKit template comes with a `prepare` script that runs after the dependencies are installed.
 
 <!------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------>
