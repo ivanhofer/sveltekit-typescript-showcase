@@ -15,7 +15,7 @@ work together with [`TypeScript`](https://www.typescriptlang.org/).
 ## Who am I
 
 Hi, I'm Ivan, a passionate webdeveloper.
-
+prepate
 I recently have been working more intensively with `TypeScript` when I have created an
 internationalization library focusing on developer experience with strong typesafety features:
 [`typesafe-i18n`](https://github.com/ivanhofer/typesafe-i18n)
@@ -502,7 +502,7 @@ In this chapter you get to know how to type the backend of your `SvelteKit` appl
 
 -  **[auto generated types](https://kit.svelte.dev/docs/types#generated-types)**\
    SvelteKit creates some types automatically. Useful when you want to type your Endpoints and Load functions. Those types contain a typed `params` object depending on the route folder structure you use. The types are generated inside the `__types` folder. You can use a relative file import to use them (`./__types/{NAME_OF_FILE}`).\
-   The types are generated when you run the dev server `npm run dev`. If you just want to generate the types, without running the dev server you can run `svelte-kit sync`. When you run `npm install`, the types will be generated automatically because the SvelteKit template comes with a `prepare` script that runs after the dependencies are installed.
+   The types are generated when you run the dev server `npm run dev`. If you just want to generate the types, without running the dev server you can run `npx svelte-kit sync`. When you run `npm install`, the types will be generated automatically because the SvelteKit template comes with a `prepare` script that runs after the dependencies are installed.
 
 <!------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------>
