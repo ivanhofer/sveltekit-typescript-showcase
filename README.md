@@ -15,7 +15,7 @@ work together with [`TypeScript`](https://www.typescriptlang.org/).
 ## Who am I
 
 Hi, I'm Ivan, a passionate webdeveloper.
-prepate
+
 I recently have been working more intensively with `TypeScript` when I have created an
 internationalization library focusing on developer experience with strong typesafety features:
 [`typesafe-i18n`](https://github.com/ivanhofer/typesafe-i18n)
