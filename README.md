@@ -204,45 +204,24 @@ npm run check
 ### path aliases
 
 You may see imports from paths that are not npm modules and also not relative paths e.g.
-`$lib/Component.svelte`. These are called path aliases and you can define them yourself if you like.
+`$components/Component.svelte`. These are called path aliases and you can define them yourself if you like.
 
-Let's say instead of using a relative file import like `../../../lib/Component.svelte` you want to
-use the alias import `$lib/Component.svelte`. To do that, you first need to define the desired alias
-in your `tsconfig.json` file:
-
-```jsonc
-{
-   "compilerOptions": {
-      "paths": {
-         "$lib/*": ["src/lib/*"]
-      }
-   }
-}
-```
-
-And then also tell [`vite`](https://vitejs.dev/) inside your `svelte.config.js` that you want to use
-that path alias.
+Let's say instead of using a relative file import like `../../../components/Component.svelte` you want to
+use the alias import `$components/Component.svelte`. To do that, you only need to define the desired alias
+in your `svelte.config.js` file:
 
 ```ts
-import { resolve } from 'path'
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-   kit: {
-      vite: {
-         resolve: {
-            alias: {
-               $lib: resolve('./src/lib'),
-            },
-         },
-      },
-   },
-}
-
-export default config
+  kit: {
+    alias: {
+      $components: 'src/components',
+    }
+  }
+};
 ```
 
-You can define as many aliases as you want.
+These aliases are automatically passed to Vite and TypeScript. You can define as many aliases as you want.
 
 <!------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------>
