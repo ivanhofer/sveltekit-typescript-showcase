@@ -299,6 +299,8 @@ This chapter shows how you can define events that a component emits.
    how to use generics in your events
 -  **[\$$Events](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/03-events/04-$$Events)**:
    how to extend the defined events of your components
+-  **[strictEvents](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/03-events/05-strictEvents)**:
+   how to disallow to listen for other events than the ones defined in a component
 
 <!------------------------------------------------------------------------------------------------>
 
