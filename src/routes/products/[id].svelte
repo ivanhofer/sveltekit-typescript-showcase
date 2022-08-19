@@ -1,9 +1,9 @@
 <script lang="ts" context="module">
 	import type { Load } from './__types/[id]'
-	import type { get } from './[id]'
+	import type { GET } from './[id]'
 
 	// you can either define it manually or copy this line to let TypeScript infer the type for you
-	type InputProps = NonNullable<Awaited<ReturnType<typeof get>>['body']>
+	type InputProps = NonNullable<Awaited<ReturnType<typeof GET>>['body']>
 	type OutputProps = InputProps & { id: string }
 
 	// we have imported the `Load` type from the relative `__types` folder that

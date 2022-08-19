@@ -436,7 +436,7 @@ In this chapter you get to know how to type the backend of your `SvelteKit` appl
    Use the `Load` inferface type load functions in your route. It expects two generics:
 
    1. The first type will be the output type of your `endpoint` if available.\
-      If no `get`-endpoint is defined, the `props` object will be `undefined`.
+      If no `GET`-endpoint is defined, the `props` object will be `undefined`.
    2. The second type describes the shape the returned value will have.
 
    _`src/routes/product/[id].svelte`_
@@ -444,7 +444,7 @@ In this chapter you get to know how to type the backend of your `SvelteKit` appl
    ```svelte
    <script lang="ts" context="module">
       import type { Load } from './__types/[id]'
-      import type { get } from './[id]'
+      import type { GET } from './[id]'
 
       // you can either define it manually or copy this line to let TypeScript infer the type for you
       type InputProps = NonNullable<Awaited<ReturnType<typeof get>>['body']>
