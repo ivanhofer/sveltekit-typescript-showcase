@@ -4,16 +4,10 @@
 // for information about these interfaces
 declare namespace App {
 	interface Locals {
-		username: string
-	}
-
-	// interface Platform {}
-
-	interface Session {
 		user?: {
 			name: string
 		}
 	}
 
-	// interface Stuff {}
+	// interface Platform {}
 }

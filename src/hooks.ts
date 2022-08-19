@@ -1,4 +1,4 @@
-import type { ExternalFetch, GetSession, Handle, HandleError } from '@sveltejs/kit'
+import type { ExternalFetch, Handle, HandleError } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
 	if (event.request.url.startsWith('/custom')) {
@@ -7,20 +7,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	// take a look at the `src/global.d.ts` file where we can
 	// specify the type of the `locals` object
-	event.locals.username = 'john.doe'
+	event.locals.user = { name: 'john.doe' }
 
 	return await resolve(event)
-}
-
-// the type of the Session object comes from `src/global.d.ts`
-export const getSession: GetSession = (event) => {
-	if (!event.locals.username) return {}
-
-	return {
-		user: {
-			name: event.locals.username,
-		},
-	}
 }
 
 export const handleError: HandleError = async ({ error, event }) => {
@@ -28,6 +17,6 @@ export const handleError: HandleError = async ({ error, event }) => {
 }
 
 export const externalFetch: ExternalFetch = async (request) => {
-	// add some authorisation headers etc.
+	// add some authorization headers etc.
 	return fetch(request)
 }
