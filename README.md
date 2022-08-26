@@ -407,13 +407,13 @@ In this chapter you get to know how to type the backend of your `SvelteKit` appl
    _`src/routes/product/[id].ts`_
 
    ```ts
-   import type { RequestHandler } from './__types/[id]'
+   import type { RequestHandler } from './$types'
    import type { Product } from '$models/product.model'
    import db from '$db'
 
    type OutputType = { product: Product }
 
-   export const get: RequestHandler<OutputType> = async ({ params }) => {
+   export const GET: RequestHandler<OutputType> = async ({ params }) => {
       const data = await db.getProjectById(params.id)
 
       return {
@@ -424,7 +424,7 @@ In this chapter you get to know how to type the backend of your `SvelteKit` appl
    }
    ```
 
-   > Note: SvelteKit auto-generates the `__types` folder for us. We can use it to get a `RequestHandler` type that already has the correct shape for the `params` object.
+   > Note: SvelteKit auto-generates the `./$types` folder for us. We can use it to get a `RequestHandler` type that already has the correct shape for the `params` object.
 
 <!------------------------------------------------------------------------------------------------>
 
@@ -439,24 +439,20 @@ In this chapter you get to know how to type the backend of your `SvelteKit` appl
       If no `GET`-endpoint is defined, the `props` object will be `undefined`.
    2. The second type describes the shape the returned value will have.
 
-   _`src/routes/product/[id].svelte`_
 
-   ```svelte
-   <script lang="ts" context="module">
-      import type { Load } from './__types/[id]'
+   _`src/routes/product/[id]/+page.svelte`_
+   ```ts
+      import type { PageLoad, PageLoadData } from './$types'
       import type { GET } from './[id]'
 
-      // you can either define it manually or copy this line to let TypeScript infer the type for you
-      type InputProps = NonNullable<Awaited<ReturnType<typeof get>>['body']>
-
-      type OutputProps = InputProps & { id: string }
+      type OutputProps = PageLoadData & { id: string }
       // the same as
       // type OutputProps = {
       //    id: string
       //    product: Product
       // }
 
-      export const load: Load<InputProps, OutputProps> = async ({ params, props }) => {
+      export const load: PageLoad<OutputProps> = async ({ params, props }) => {
          return {
             props: {
                id: params.id,
@@ -464,26 +460,24 @@ In this chapter you get to know how to type the backend of your `SvelteKit` appl
             },
          }
       }
-   </script>
+   ```
 
+   _`src/routes/product/[id]/+page.svelte`_
+   ```svelte
    <script lang="ts">
-      import type { Product } from '$models/product.model'
+      import type { PageData } from './$types'
 
-      // by adding the `$$Props` interface we will get notified
-      // if the return type of out load function changes
-      interface $$Props extends OutputProps {}
-
-      export let id: string
-      export let product: Product
+      // PageData = { id: string; product: Product }
+      export let data: PageData
    </script>
    ```
 
-   > Note: SvelteKit auto-generates the `__types` folder for us. We can use it to get a `Load` type that already has the correct shape for the `params` object.
+   > Note: SvelteKit auto-generates the `./$types` folder for us. We can use it to get a `Load` type that already has the correct shape for the `params` object.
 
 
 -  **[auto generated types](https://kit.svelte.dev/docs/types#generated-types)**\
-   SvelteKit creates some types automatically. Useful when you want to type your Endpoints and Load functions. Those types contain a typed `params` object depending on the route folder structure you use. The types are generated inside the `__types` folder. You can use a relative file import to use them (`./__types/{NAME_OF_FILE}`).\
-   The types are generated when you run the dev server `npm run dev`. If you just want to generate the types, without running the dev server you can run `npx svelte-kit sync`. When you run `npm install`, the types will be generated automatically because the SvelteKit template comes with a `prepare` script that runs after the dependencies are installed.
+   SvelteKit creates some types automatically. Useful when you want to type your Endpoints and Load functions. Those types contain a typed `params` object depending on the route folder structure you use. The types are generated inside the `./$types` folder.\
+   The types are generated when you run the dev server `npm run dev`. If you just want to generate the types, without running the dev server you can run `npx svelte-kit sync`. When you run `npm install`, the types will be generated automatically because the SvelteKit runs a post-install script that generates the files.
 
 <!------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------>
