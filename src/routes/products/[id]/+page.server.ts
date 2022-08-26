@@ -3,7 +3,7 @@ import type { Product } from '$models/product.model'
 
 type OutputType = { product: Product }
 
-// we have imported the `PageServerLoad` type from the relative `./$types` folder that
+// We have imported the `PageServerLoad` type from the relative `./$types` folder that
 // is hidden in the generated `.svelte-kit` folder. Those generated types
 // contain a `PageServerLoad` type with a `params` object that matches our route.
 // You need to run the dev server or `svelte-kit sync` to generate them.
