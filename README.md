@@ -442,24 +442,24 @@ In this chapter you get to know how to type the backend of your `SvelteKit` appl
 
    _`src/routes/product/[id]/+page.svelte`_
    ```ts
-      import type { PageLoad, PageLoadData } from './$types'
-      import type { GET } from './[id]'
+   import type { PageLoad, PageLoadData } from './$types'
+   import type { GET } from './[id]'
 
-      type OutputProps = PageLoadData & { id: string }
-      // the same as
-      // type OutputProps = {
-      //    id: string
-      //    product: Product
-      // }
+   type OutputProps = PageLoadData & { id: string }
+   // the same as
+   // type OutputProps = {
+   //    id: string
+   //    product: Product
+   // }
 
-      export const load: PageLoad<OutputProps> = async ({ params, props }) => {
-         return {
-            props: {
-               id: params.id,
-               product: props.product,
-            },
-         }
+   export const load: PageLoad<OutputProps> = async ({ params, props }) => {
+      return {
+         props: {
+            id: params.id,
+            product: props.product,
+         },
       }
+   }
    ```
 
    _`src/routes/product/[id]/+page.svelte`_
