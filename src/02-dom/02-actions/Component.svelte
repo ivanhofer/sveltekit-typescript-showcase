@@ -1,22 +1,25 @@
 <script lang="ts">
+	import type { Action } from 'svelte/action'
+
 	type AutosizeOptions = {
 		minHeight: number
 	}
 
-	// import type { Action } from 'svelte/action'
-	// Note: the next Svelte release will export an `Action` interface that
-	// can be used to type actions. Until then, you need to trust the
-	// Svelte extension to tell you if the implementation is correct.
-	// Once released I will update this example.
-
 	// this action resizes a textarea when a newline gets inserted/deleted
-	const autosize = (node: HTMLTextAreaElement, options?: AutosizeOptions) => {
+	const autosize: Action<
+		HTMLTextAreaElement, // we can restrict the action to be used only on certain type of Elements
+		AutosizeOptions, // the options you need to pass to the action
+		{ 'on:changed': (e: CustomEvent<number>) => void } // we can tell the Svelte language tools
+		//                                                    that this action adds props and events to the dom elements
+	> = (node, options?) => {
 		const minHeight = options?.minHeight || 0
 
 		const expand = () => {
 			node.style.height = 'inherit'
 			var height = node.scrollHeight
 			node.style.height = Math.max(height, minHeight) + 'px'
+
+			node.dispatchEvent(new CustomEvent('changed', { detail: height }))
 		}
 
 		// trigger resizing when component gets mounted
@@ -37,4 +40,4 @@
 	// you can mark options as required or optional
 </script>
 
-<textarea use:autosize={{ minHeight: 50 }} />
+<textarea use:autosize={{ minHeight: 50 }} on:changed={({ detail }) => console.log(detail)} />
