@@ -355,30 +355,26 @@ This chapter shows how you can define events that a component emits.
 
 In this chapter you get to know how to type the backend of your `SvelteKit` application.
 
--  **[hooks](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/hooks.ts)**:
+-  **[hooks](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/hooks.server.ts)**:
    how to intercept and modify requests
 
-   > https://kit.svelte.dev/docs/hooks
+   > https://kit.svelte.dev/docs/hooks#server-hooks
 
-   The `src/hooks.ts` file can export four functions. The type of these functions have the same name
+   The `src/hooks.server.ts` file can export four functions. The type of these functions have the same name
    like the function and get exported from `@sveltejs/kit`.
 
    ```ts
-   import type { ExternalFetch, GetSession, Handle, HandleError } from '@sveltejs/kit'
+   import type { HandleFetch, Handle, HandleServerError } from '@sveltejs/kit'
 
    export const handle: Handle = async ({ event, resolve }) => {
       /* implementation */
    }
 
-   export const getSession: GetSession = (event) => {
+   export const handleError: HandleServerError = async ({ error, event }) => {
       /* implementation */
    }
 
-   export const handleError: HandleError = async ({ error, event }) => {
-      /* implementation */
-   }
-
-   export const externalFetch: ExternalFetch = async (request) => {
+   export const handleFetch: HandleFetch = async (request) => {
       /* implementation */
    }
    ```
@@ -389,7 +385,7 @@ In this chapter you get to know how to type the backend of your `SvelteKit` appl
    type of these objects look like, you need to go into the `src/app.d.ts` file and update the already
    existing `interfaces` there.
 
-   Since these types will be shared accross multiple files and functions, it makes sense to define them
+   Since these types will be shared across multiple files and functions, it makes sense to define them
    just a single time. `SvelteKit` is configured in a way that it automatically uses those types for
    all functions.
 
