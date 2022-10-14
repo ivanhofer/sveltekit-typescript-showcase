@@ -269,6 +269,8 @@ props.
    expect either param A or param B
 -  **[svelte:component](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/09-svelte-component)**:
    getting prop-types of a component (useful for `svelte:component`)
+-  **[prop controls type](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/01-props/10-prop-controls-type)**:
+   using a prop to control the type of another prop e.g passing single vs multiple items
 
 <!------------------------------------------------------------------------------------------------>
 
