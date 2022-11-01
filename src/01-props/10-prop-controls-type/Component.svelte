@@ -1,5 +1,5 @@
 <script lang="ts">
-	// we neet to account for three different cases
+	// we need to account for three different cases
 	// `true` 		=> prop gets passed as truthy
 	// `false` 		=> prop gets passed as falsy
 	// `undefined` => prop gets not passed
