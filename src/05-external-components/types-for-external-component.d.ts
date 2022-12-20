@@ -6,8 +6,9 @@
 
 declare module 'some-component-with-no-types' {
 	import { SvelteComponentTyped } from 'svelte'
+	import type { HTMLButtonAttributes } from 'svelte/elements'
 
-	interface ButtonProps extends svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['button']> {
+	interface ButtonProps extends Omit<HTMLButtonAttributes, 'type'> {
 		/**
 		 * @default "submit"
 		 */

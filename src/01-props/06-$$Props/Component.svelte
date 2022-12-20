@@ -1,9 +1,11 @@
 <script lang="ts">
+	import type { HTMLButtonAttributes } from 'svelte/elements'
+
 	// ! note: `$$Props` is currently an experimental feature
 
 	// to expose types for props, you won't use in this component,
 	// but you want to pass on to child-components via `$$restProps`
-	interface $$Props extends Partial<svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['button']>> {
+	interface $$Props extends HTMLButtonAttributes {
 		isLoading: boolean
 	}
 
@@ -11,7 +13,7 @@
 	// https://github.com/sveltejs/language-tools/issues/442#issuecomment-1060253460
 	// type $$Props = {
 	// 	isLoading: boolean
-	// } & Partial<svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['button']>>
+	// } & HTMLButtonAttributes
 
 	// you still have to define the type here
 	export let isLoading: boolean
