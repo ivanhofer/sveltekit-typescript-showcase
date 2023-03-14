@@ -65,13 +65,13 @@ You can create a new `SvelteKit` project by following the
 docs.
 
 ```sh
-npm init svelte@next my-app
+npm init svelte my-app
 cd my-app
 npm install
 npm run dev
 ```
 
-The `npm init svelte@next my-app` command starts an interactive project-setup process where you get
+The `npm init svelte my-app` command starts an interactive project-setup process where you get
 asked a few questions. Of course you should select the `TypeScript` option.
 
 > I also recommend enabling the [`eslint`](https://eslint.org/) and
