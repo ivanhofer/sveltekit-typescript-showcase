@@ -2,4 +2,4 @@
 	import Component from './Component.svelte'
 </script>
 
-<Component isLoading={true} type="cancel" />
+<Component isLoading={true} type="reset" />

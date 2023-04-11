@@ -7,13 +7,11 @@
 	const response1: ApiResponse1<string> = {
 		success: true,
 		data: 'some text',
-		error: undefined,
 	}
 
 	const response2: ApiResponse2<string> = {
 		success: true,
 		data: 'another text',
-		error: undefined,
 	}
 </script>
 

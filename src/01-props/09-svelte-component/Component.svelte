@@ -10,7 +10,7 @@
 	export const openModal = <Component extends SvelteComponentTyped>(
 		component: ComponentType<Component>,
 		// little hack to be able to either disallow or require props
-		...props: Record<string, unknown> extends ComponentProps<Component> ? [] : [ComponentProps<Component>]
+		...props: { [x: string]: never } extends ComponentProps<Component> ? [] : [ComponentProps<Component>]
 	) => {
 		modal.set(component)
 		// `props` is an array with a single item (the object containing all the props of the component)
