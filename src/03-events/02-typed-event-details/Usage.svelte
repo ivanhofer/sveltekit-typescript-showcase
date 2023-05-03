@@ -1,7 +1,8 @@
 <script lang="ts">
+   import type { ComponentEvents } from 'svelte'
 	import Component from './Component.svelte'
 
-	type LoadedEventType = Component['$$events_def']['loaded']
+	type LoadedEventType = ComponentEvents<Component>['loaded']
 
 	// `detail` is of type `never` (will log as `null`)
 	const handleLoaded = ({ detail }: LoadedEventType) => console.log('loaded', detail)

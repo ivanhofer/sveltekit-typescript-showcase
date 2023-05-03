@@ -1,14 +1,13 @@
 <script lang="ts">
+   import type { ComponentEvents } from 'svelte'
 	import Component from '../02-typed-event-details/Component.svelte'
 
 	// ! note: `$$Events` is currently an experimental feature
 
-	type $$Events = Component['$$events_def']
+	type $$Events = ComponentEvents<Component>
 
 	// can also be specified as `interface`
-	// note: we need to save it to a new type first or else get an TS-2499 Error
-	// type TypedEventsEventsType = TypedEvents['$$events_def']
-	// interface $$Events extends TypedEventsEventsType {}
+	// interface $$Events extends ComponentEvents<Component> {}
 </script>
 
 <div class="wrapper">
