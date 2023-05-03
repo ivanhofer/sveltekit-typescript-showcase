@@ -13,14 +13,14 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "2.0.0",
-		"@sveltejs/kit": "1.15.4",
+		"@sveltejs/adapter-auto": "2.0.1",
+		"@sveltejs/kit": "1.15.10",
 		"svelte": "^3.58.0",
 		"svelte-check": "^3.2.0",
 		"svelte-preprocess": "^5.0.3",
 		"tslib": "^2.5.0",
 		"typescript": "~5.0.4",
-		"vite": "^4.2.1"
+		"vite": "^4.3.4"
 	},
 	"type": "module",
 	"funding": {
