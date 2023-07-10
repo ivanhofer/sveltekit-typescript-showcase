@@ -352,6 +352,14 @@ This chapter shows how you can define events that a component emits.
       how to wrap contexts with `TypeScript`
       **[(TS-tipp #3)](#3-wrap-functions-that-have-no-strong-typings)**
 
+
+<!------------------------------------------------------------------------------------------------>
+
+#### other
+
+-  **[type cast in markup](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/07-other/01-type-cast-in-markup)**:
+   how to cast a type within the markup
+
 <!------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------>
 
