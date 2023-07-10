@@ -2,7 +2,7 @@
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte'
 
 	const dispatch = createEventDispatcher<{
-		loaded: never
+		loaded: null
 		clicked: number
 	}>()
 

@@ -114,6 +114,8 @@ type-checking features.
 
 ### How does TypeScript work inside Svelte-Components?
 
+> Svelte has added a [`TypeScript`-section](https://svelte.dev/docs/typescript) to their official docs.
+
 Per default the `Svelte`-compiler only understands plain `HTML`, `CSS` and `JavaScript`. But we can
 add support for other languages to the compiler via custom
 [`preprocessors`](https://svelte.dev/docs#compile-time-svelte-preprocess). Luckily, we don't have to
@@ -322,7 +324,7 @@ This chapter shows how you can define events that a component emits.
 
 #### external components
 
--  **[SvelteComponentTyped](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/05-external-components)**:
+-  **[SvelteComponent](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/05-external-components)**:
    how to write type definitions for external components
 -  **[`svelte-kit package`](https://github.com/ivanhofer/sveltekit-typescript-showcase/tree/main/src/lib)**:
    how to create a `Svelte` component library
@@ -564,10 +566,6 @@ splitting the model into two different interfaces and then use an union type to.
 <!------------------------------------------------------------------------------------------------>
 
 #### #2 extend existing type definitions
-
-> [Example](https://github.com/ivanhofer/sveltekit-typescript-showcase/blob/main/src/createEventDispatcher.d.ts)\
-> a more complex example you don't need to fully understand. But this example can show you what is possible
-> with `TypeScript` if you know how to use it ;)
 
 Sometimes it is possible that a library contains missing or incomplete type definitions. You could
 either use `// @ts-ignore` comments and live with it or you can write the type declaration yourself.

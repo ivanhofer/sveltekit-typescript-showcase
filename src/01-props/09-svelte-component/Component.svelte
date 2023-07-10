@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import type { ComponentProps, ComponentType, SvelteComponentTyped } from 'svelte'
+	import type { ComponentProps, ComponentType, SvelteComponent } from 'svelte'
 	import { writable } from 'svelte/store'
 
 	// we will store the modal's content in a writable store to be able to react to it when the value changes
@@ -7,7 +7,7 @@
 	const modalProps = writable<Record<string, any> | undefined>(undefined)
 
 	// we can call this function from anywhere in our code to open a modal
-	export const openModal = <Component extends SvelteComponentTyped>(
+	export const openModal = <Component extends SvelteComponent>(
 		component: ComponentType<Component>,
 		// little hack to be able to either disallow or require props
 		...props: { [x: string]: never } extends ComponentProps<Component> ? [] : [ComponentProps<Component>]

@@ -3,7 +3,7 @@
 <script lang="ts" strictEvents>
 	import { createEventDispatcher } from 'svelte'
 
-	const dispatch = createEventDispatcher<{ done: never }>()
+	const dispatch = createEventDispatcher<{ done: null }>()
 </script>
 
 <button on:click={() => dispatch('done')}>done</button>

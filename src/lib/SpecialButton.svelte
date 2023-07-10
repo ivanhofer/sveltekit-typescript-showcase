@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount } from 'svelte'
-	const dispatch = createEventDispatcher<{ ready: never }>()
+	const dispatch = createEventDispatcher<{ ready: null }>()
 
 	export let type: 'submit' | 'reset' = 'submit'
 	export let primary = false

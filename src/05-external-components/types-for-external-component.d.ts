@@ -5,7 +5,7 @@
 // to benefit from strong type-checking
 
 declare module 'some-component-with-no-types' {
-	import { SvelteComponentTyped } from 'svelte'
+	import { SvelteComponent } from 'svelte'
 	import type { HTMLButtonAttributes } from 'svelte/elements'
 
 	interface ButtonProps extends Omit<HTMLButtonAttributes, 'type'> {
@@ -26,7 +26,7 @@ declare module 'some-component-with-no-types' {
 		ready: CustomEvent<number>
 	}
 
-	export default class SpecialButton extends SvelteComponentTyped<
+	export default class SpecialButton extends SvelteComponent<
 		// Props
 		ButtonProps,
 		// Events
